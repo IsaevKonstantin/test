@@ -1,0 +1,31 @@
+<div class="header">
+    <div class="header__title">
+        {{(headerService.title$ | async)}}
+    </div>
+    <ng-container *ngIf="(headerService.user$ | async) 
+    && (headerService.title$ | async) !== 'Log in' 
+    && (headerService.title$ | async) !== 'Sign up'">
+        <div>
+            {{(headerService.user$ | async)?.firstname}}
+            {{(headerService.user$ | async)?.lastname}}
+            <a target="_blank"
+                href="{{(headerService.user$ | async)?.webSiteURL}}">
+                {{(headerService.user$ | async)?.webSiteURL}}
+            </a>
+        </div>
+        <div (click)="logout()">
+            Logout
+        </div>
+        <div class="menu">
+            <div class="card flex justify-content-center">
+                <p-menu #menu [model]="items" [popup]="true"></p-menu>
+                <button pButton type="button"
+                    (click)="menu.toggle($event)"
+                    icon="pi pi-bars" label="Menu"></button>
+            </div>
+        </div>
+    </ng-container>
+    <p-toast [showTransformOptions]="'translateY(100%)'"
+        [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"
+        [showTransformOptions]="'translateX(100%)'"></p-toast>
+</div>

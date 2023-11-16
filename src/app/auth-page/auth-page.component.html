@@ -1,0 +1,34 @@
+<div class="container">
+    <form [formGroup]="myForm" novalidate>
+        <div class="form-group mg-30">
+            <div class="p-float-label input-form">
+                <input class="form-control" id="login" pInputText name="login"
+                    formControlName="userLogin" />
+                <label htmlFor="login">Login</label>
+                <div class="alert alert-danger"
+                    *ngIf="myForm.controls['userLogin'].invalid && myForm.controls['userLogin'].touched">
+                    Enter login
+                </div>
+            </div>
+        </div>
+        <div class="form-group mg-30">
+            <div class="p-float-label">
+                <input class="form-control" pInputText name="password"
+                    formControlName="userPassword" />
+                <label htmlFor="password">Password</label>
+                <div class="alert alert-danger"
+                    *ngIf="myForm.controls['userPassword'].invalid && myForm.controls['userPassword'].touched">
+                    Enter password
+                </div>
+            </div>
+        </div>
+        <div class="btn mg-30">
+            <p-button label="Log in" [disabled]="myForm.invalid"
+                (onClick)="navigateToHome()"></p-button>
+        </div>
+    </form>
+    <div class="have-account">
+        <span> Don’t have an account? </span>
+        <a (click)="navigateToSignUp()"> Sign up </a>
+    </div>
+</div>
